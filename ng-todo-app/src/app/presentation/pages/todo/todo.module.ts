@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
+import { TodoPage } from './todo.page';
+import { TodoPageRoutingModule } from './todo-routing.module';
 
-import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
@@ -12,8 +12,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    TodoPageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [TodoPage]
 })
-export class HomePageModule {}
+export class TodoPageModule {}
