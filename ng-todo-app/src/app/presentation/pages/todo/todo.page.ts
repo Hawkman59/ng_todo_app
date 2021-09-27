@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { Todo } from 'src/app/features/todo-list/domain/entities/todo';
+import { Todos, TodoStateModel } from '../../ngxs';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +11,25 @@ import { Component } from '@angular/core';
   styleUrls: ['todo.page.scss'],
 })
 export class TodoPage {
+  @Select(state => state.todos) todos$: Observable<TodoStateModel>;
 
-  constructor() {}
+  text: string = ""
+  todos: Todo[] = []
 
+  constructor(private store: Store) {
+    this.getTodoList()
+  }
+
+  addTodo(text: string){
+    this.store.dispatch(new Todos.Add(text))
+    this.getTodoList()
+    this.text = ""
+  }
+
+  getTodoList(){
+    this.store.dispatch(new Todos.FetchAll()).pipe(withLatestFrom(this.todos$)).subscribe(([_,todos]) => {
+      console.log(todos.todos)
+      this.todos = todos.todos
+    })
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { IUsecase } from "src/app/core/usecase"
+import { TodoRepositoryImpl } from "../../data/repositories/todo.repository.impl"
 import { Todo } from "../entities/todo"
-import { TodoRepository } from "../repositories/todo.repository"
 
 export class CreateTodoRequest{
     constructor(public readonly text: string){}
@@ -11,7 +11,7 @@ export class CreateTodoRequest{
 export class AddTodoUsecase implements IUsecase<CreateTodoRequest, void> {
     presenter: void
 
-    constructor(public readonly repository: TodoRepository){}
+    constructor(public readonly repository: TodoRepositoryImpl){}
 
     async execute(request: CreateTodoRequest): Promise<void>{
 
@@ -20,7 +20,9 @@ export class AddTodoUsecase implements IUsecase<CreateTodoRequest, void> {
         return;
       }
 
-      const todo = new Todo(text);
+      const todoId = await this.repository.getNextId()
+
+      const todo = new Todo(text,todoId);
       await this.repository.createTodo(todo);
 
     }

@@ -25,4 +25,10 @@ export class TodoRepositoryImpl implements TodoRepository{
         var todoList = await this.localDatasource.getTodos()
         return todoList
     }
+
+    async getNextId(): Promise<number>{
+        var nextId = await this.localDatasource.getNextId()
+
+        return nextId
+    }
 }
