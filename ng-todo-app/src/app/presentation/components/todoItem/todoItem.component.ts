@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Store } from '@ngxs/store';
 import { Todo } from 'src/app/features/todo-list/domain/entities/todo';
 
 @Component({
