@@ -7,7 +7,6 @@ export class TodoLocalDatasource{
 
           localStorage.setItem(todo.id.toString(), JSON.stringify(todo))
 
-          return
      }
 
      async getNextId(){
