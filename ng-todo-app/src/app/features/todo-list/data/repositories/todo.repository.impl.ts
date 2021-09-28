@@ -16,9 +16,9 @@ export class TodoRepositoryImpl implements TodoRepository{
         await this.localDatasource.updateTodoStatus(id)
     }
 
-    /*deleteTodo(id: number): Promise<void>{
-
-    } */
+    async deleteTodo(id: number): Promise<void>{
+        await this.localDatasource.deleteTodo(id)
+    }
 
     async getTodoList(): Promise<Todo[]>{
         var todoList = await this.localDatasource.getTodos()

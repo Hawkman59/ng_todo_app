@@ -4,7 +4,7 @@ import { Todo } from "../entities/todo";
 export abstract class TodoRepository {
     abstract createTodo(todo: Todo): Promise<void>
     abstract updateTodoStatus(id: number): Promise<void>
-    //abstract deleteTodo(id: number): Promise<void>
+    abstract deleteTodo(id: number): Promise<void>
     abstract getTodoList(): Promise<Todo[]>
     abstract getNextId(): Promise<number>
 }

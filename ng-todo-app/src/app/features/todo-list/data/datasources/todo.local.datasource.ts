@@ -44,4 +44,8 @@ export class TodoLocalDatasource{
 
           localStorage.setItem(todo.id.toString(), JSON.stringify(todo))
      }
+
+     async deleteTodo(id: number): Promise<void>{
+          localStorage.removeItem(id.toString())
+     }
 }

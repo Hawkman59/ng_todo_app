@@ -26,7 +26,7 @@
       <div class="list" *ngIf="this.todos.length > 0">
         <ion-list class="list" >
             <ion-item class="item-stable">
-              <ion-text><h2>Offen</h2></ion-text>
+              <ion-text><h2>Todos</h2></ion-text>
             </ion-item>
             <ion-item-sliding *ngFor="let todo of todos">
               <ion-item class="item-accordion"  >
@@ -34,7 +34,7 @@
                 <ion-checkbox [(ngModel)]="todo.status" (click)="updateTodoStatus(todo.id)" ></ion-checkbox>
               </ion-item>
               <ion-item-options side="end">
-                <ion-item-option color="danger" >Löschen</ion-item-option>
+                <ion-item-option (click)="deleteTodo(todo.id)" color="danger" >Löschen</ion-item-option>
               </ion-item-options>
             </ion-item-sliding>
         </ion-list>
@@ -48,7 +48,7 @@
               <ion-grid>
                 <ion-row class="ion-align-items-center ion-justify-content-center">
                   <ion-col size="11">
-                    <ion-text><h2>Done</h2></ion-text>
+                    <ion-text><h2>Done ({{todos.length}})</h2></ion-text>
                   </ion-col>
                   <ion-col size="1">
                     <ion-icon *ngIf="!showDone" name="chevron-down-outline"></ion-icon>

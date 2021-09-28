@@ -12,6 +12,12 @@ export namespace Todos {
         constructor(public id: number) {
         }
     }
+
+    export class Delete {
+        static readonly type = '[Todo] Delete';
+        constructor(public id: number) {
+        }
+    }
     
     export class FetchAll {
         static readonly type = '[Todo] Fetch All';

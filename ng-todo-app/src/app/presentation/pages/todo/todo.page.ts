@@ -42,6 +42,12 @@ export class TodoPage {
     })
   }
 
+  deleteTodo(id: number){
+    this.store.dispatch(new Todos.Delete(id)).pipe().subscribe(()=>{
+      this.getTodoList()
+    })
+  }
+
   toggleDone(){
     this.showDone = !this.showDone
   }
