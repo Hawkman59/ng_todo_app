@@ -25,15 +25,7 @@
             <ion-item class="item-stable">
               <ion-text><h2>Todos</h2></ion-text>
             </ion-item>
-            <ion-item-sliding *ngFor="let todo of todosUndone">
-              <ion-item class="item-accordion"  >
-                <ion-label>{{todo.text}}</ion-label>
-                <ion-checkbox [(ngModel)]="todo.status" (click)="updateTodoStatus(todo.id)" ></ion-checkbox>
-              </ion-item>
-              <ion-item-options side="end">
-                <ion-item-option (click)="deleteTodo(todo.id)" color="danger" >Löschen</ion-item-option>
-              </ion-item-options>
-            </ion-item-sliding>
+            <todo-item *ngFor="let todo of todosUndone" [todo]="todo" (update)="updateTodoStatus($event)" (delete)="deleteTodo($event)"></todo-item>
         </ion-list>
       </div>
 
@@ -55,15 +47,7 @@
               </ion-grid>
           </ion-item>
           <div *ngIf="showDone">
-            <ion-item-sliding *ngFor="let todo of todosDone">
-              <ion-item class="item-accordion"  >
-                <ion-label [ngClass]="{'doneText': todo.status}">{{todo.text}}</ion-label>
-                <ion-checkbox [(ngModel)]="todo.status" (click)="updateTodoStatus(todo.id)" ></ion-checkbox>
-              </ion-item>
-              <ion-item-options side="end">
-                <ion-item-option (click)="deleteTodo(todo.id)" color="danger" >Löschen</ion-item-option>
-              </ion-item-options>
-            </ion-item-sliding>
+            <todo-item *ngFor="let todo of todosDone" [todo]="todo" (update)="updateTodoStatus($event)" (delete)="deleteTodo($event)"></todo-item>
           </div>
             
         </ion-list>

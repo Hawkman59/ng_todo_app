@@ -4,9 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { TodoPage } from './todo.page';
 import { TodoPageRoutingModule } from './todo-routing.module';
-
-
-
+import { TodoItem } from '../../components/todoItem/todoItem.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,6 +12,6 @@ import { TodoPageRoutingModule } from './todo-routing.module';
     IonicModule,
     TodoPageRoutingModule
   ],
-  declarations: [TodoPage]
+  declarations: [TodoPage, TodoItem]
 })
 export class TodoPageModule {}
