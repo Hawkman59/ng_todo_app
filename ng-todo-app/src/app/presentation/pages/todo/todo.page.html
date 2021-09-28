@@ -16,11 +16,60 @@
     <div *ngIf="this.todos.length == 0" id="container">
       <strong>Hier könnten deine Todos stehen</strong>
     </div>
-    
-    <ion-item>
-      <ion-input type="text" placeholder="Enter Todo ..." [(ngModel)]="text"></ion-input>
-      <ion-button (click)="addTodo(this.text)">+</ion-button>
-    </ion-item>
-    
+
+    <div id="content">
+      <ion-item class="searchbar">
+        <ion-input type="text" placeholder="Enter Todo ..." [(ngModel)]="text"></ion-input>
+        <ion-button (click)="addTodo(this.text)"><ion-icon name="add-outline"></ion-icon></ion-button>
+      </ion-item>
+  
+      <div class="list" *ngIf="this.todos.length > 0">
+        <ion-list class="list" >
+            <ion-item class="item-stable">
+              <ion-text><h2>Offen</h2></ion-text>
+            </ion-item>
+            <ion-item-sliding *ngFor="let todo of todos">
+              <ion-item class="item-accordion"  >
+                <ion-label>{{todo.text}}</ion-label>
+                <ion-checkbox></ion-checkbox>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option color="danger" >Löschen</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+      </div>
+
+      <div class="list" *ngIf="this.todos.length > 0">
+        <ion-list class="list" >
+          <ion-item class="item-stable"
+                    (click)="toggleDone()">
+                    
+              <ion-grid>
+                <ion-row class="ion-align-items-center ion-justify-content-center">
+                  <ion-col size="11">
+                    <ion-text><h2>Done</h2></ion-text>
+                  </ion-col>
+                  <ion-col size="1">
+                    <ion-icon *ngIf="!showDone" name="chevron-down-outline"></ion-icon>
+                    <ion-icon *ngIf="showDone" name="chevron-up-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+          </ion-item>
+          <div *ngIf="showDone">
+            <ion-item-sliding *ngFor="let todo of todos">
+              <ion-item class="item-accordion"  >
+                <ion-label>{{todo.text}}</ion-label>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option color="danger" >Löschen</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </div>
+            
+        </ion-list>
+      </div>
+    </div>    
   </ion-content>
   

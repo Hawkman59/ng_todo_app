@@ -27,8 +27,6 @@ export class TodoLocalDatasource{
      async getTodos():Promise<Todo[]>{
           var todos:Todo[] = []
           var keys = Object.keys(localStorage), i = keys.length
-
-          
           while(i--){
                var todoJson = JSON.parse(localStorage.getItem(keys[i]))
                var todo = Todo.mapJson(todoJson)

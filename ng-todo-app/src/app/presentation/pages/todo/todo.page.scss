@@ -25,3 +25,23 @@
   #container a {
     text-decoration: none;
   }
+
+  .list {
+    margin-top: 20px;
+  }
+
+  .searchbar {
+    margin-top: 10px;
+  }
+
+  #content{
+    padding: 20px;
+  }
+
+  .list .item.item-accordion.ng-hide {
+    line-height: 0px;
+  }
+  .list .item.item-accordion.ng-hide-add,
+  .list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+  }

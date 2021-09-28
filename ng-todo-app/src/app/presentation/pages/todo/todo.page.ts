@@ -15,21 +15,28 @@ export class TodoPage {
 
   text: string = ""
   todos: Todo[] = []
+  showDone: boolean = false
 
   constructor(private store: Store) {
     this.getTodoList()
   }
 
   addTodo(text: string){
-    this.store.dispatch(new Todos.Add(text))
-    this.getTodoList()
-    this.text = ""
+    this.store.dispatch(new Todos.Add(text)).pipe().subscribe(()=>{
+      this.getTodoList()
+      this.text = ""
+    })
+    
+    
   }
 
   getTodoList(){
     this.store.dispatch(new Todos.FetchAll()).pipe(withLatestFrom(this.todos$)).subscribe(([_,todos]) => {
-      console.log(todos.todos)
       this.todos = todos.todos
     })
+  }
+
+  toggleDone(){
+    this.showDone = !this.showDone
   }
 }
