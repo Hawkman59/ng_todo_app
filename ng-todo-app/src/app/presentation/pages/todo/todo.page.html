@@ -12,10 +12,6 @@
         <ion-title size="large">Simple Todo App</ion-title>
       </ion-toolbar>
     </ion-header>
-  
-    <div *ngIf="this.todosUndone.length == 0" id="container">
-      <strong>Hier könnten deine Todos stehen</strong>
-    </div>
 
     <div id="content">
       <ion-item class="searchbar">
@@ -23,6 +19,7 @@
         <ion-button (click)="addTodo(this.text)"><ion-icon name="add-outline"></ion-icon></ion-button>
       </ion-item>
   
+
       <div class="list" *ngIf="this.todosUndone.length > 0">
         <ion-list class="list" >
             <ion-item class="item-stable">
@@ -60,7 +57,7 @@
           <div *ngIf="showDone">
             <ion-item-sliding *ngFor="let todo of todosDone">
               <ion-item class="item-accordion"  >
-                <ion-label>{{todo.text}}</ion-label>
+                <ion-label [ngClass]="{'doneText': todo.status}">{{todo.text}}</ion-label>
                 <ion-checkbox [(ngModel)]="todo.status" (click)="updateTodoStatus(todo.id)" ></ion-checkbox>
               </ion-item>
               <ion-item-options side="end">
