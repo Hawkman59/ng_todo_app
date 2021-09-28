@@ -19,8 +19,15 @@ export namespace Todos {
         }
     }
     
-    export class FetchAll {
-        static readonly type = '[Todo] Fetch All';
+    export class FetchAllUndone {
+        static readonly type = '[Todo] Fetch All Undone';
+        public todos: Todo[]
+        constructor() {
+        }
+    }
+
+    export class FetchAllDone {
+        static readonly type = '[Todo] Fetch All Done';
         public todos: Todo[]
         constructor() {
         }

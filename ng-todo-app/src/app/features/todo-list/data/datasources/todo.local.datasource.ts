@@ -24,13 +24,30 @@ export class TodoLocalDatasource{
           return (highestKey+1)
      }
 
-     async getTodos():Promise<Todo[]>{
+     async getTodosDone():Promise<Todo[]>{
           var todos:Todo[] = []
           var keys = Object.keys(localStorage), i = keys.length
           while(i--){
                var todoJson = JSON.parse(localStorage.getItem(keys[i]))
                var todo = Todo.mapJson(todoJson)
-               todos.push(todo)
+               if(todo.status){
+                    todos.push(todo)
+               }
+               
+          }
+          
+          return todos
+     }
+
+     async getTodosUndone():Promise<Todo[]>{
+          var todos:Todo[] = []
+          var keys = Object.keys(localStorage), i = keys.length
+          while(i--){
+               var todoJson = JSON.parse(localStorage.getItem(keys[i]))
+               var todo = Todo.mapJson(todoJson)
+               if(!todo.status){
+                    todos.push(todo)
+               }
           }
           
           return todos

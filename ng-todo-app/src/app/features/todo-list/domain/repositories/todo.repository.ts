@@ -6,5 +6,6 @@ export abstract class TodoRepository {
     abstract updateTodoStatus(id: number): Promise<void>
     abstract deleteTodo(id: number): Promise<void>
     abstract getTodoList(): Promise<Todo[]>
+    abstract getDoneList(): Promise<Todo[]>
     abstract getNextId(): Promise<number>
 }

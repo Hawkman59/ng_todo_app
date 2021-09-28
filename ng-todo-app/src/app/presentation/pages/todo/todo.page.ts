@@ -14,7 +14,8 @@ export class TodoPage {
   @Select(state => state.todos) todos$: Observable<TodoStateModel>;
 
   text: string = ""
-  todos: Todo[] = []
+  todosUndone: Todo[] = []
+  todosDone: Todo[] = []
   showDone: boolean = false
 
   constructor(private store: Store) {
@@ -31,8 +32,12 @@ export class TodoPage {
   }
 
   getTodoList(){
-    this.store.dispatch(new Todos.FetchAll()).pipe(withLatestFrom(this.todos$)).subscribe(([_,todos]) => {
-      this.todos = todos.todos
+    this.store.dispatch(new Todos.FetchAllUndone()).pipe(withLatestFrom(this.todos$)).subscribe(([_,todos]) => {
+      this.todosUndone = todos.todos
+    })
+
+    this.store.dispatch(new Todos.FetchAllDone()).pipe(withLatestFrom(this.todos$)).subscribe(([_,todos]) => {
+      this.todosDone = todos.done
     })
   }
 

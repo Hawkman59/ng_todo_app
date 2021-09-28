@@ -21,7 +21,12 @@ export class TodoRepositoryImpl implements TodoRepository{
     }
 
     async getTodoList(): Promise<Todo[]>{
-        var todoList = await this.localDatasource.getTodos()
+        var todoList = await this.localDatasource.getTodosUndone()
+        return todoList
+    }
+
+    async getDoneList(): Promise<Todo[]>{
+        var todoList = await this.localDatasource.getTodosDone()
         return todoList
     }
 
