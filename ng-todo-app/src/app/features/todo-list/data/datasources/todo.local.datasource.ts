@@ -35,4 +35,13 @@ export class TodoLocalDatasource{
           
           return todos
      }
+
+     async updateTodoStatus(id: number): Promise<void>{
+          var todoJson = JSON.parse(localStorage.getItem(id.toString()))
+          var todo = Todo.mapJson(todoJson)
+
+          todo.status = !todo.status
+
+          localStorage.setItem(todo.id.toString(), JSON.stringify(todo))
+     }
 }

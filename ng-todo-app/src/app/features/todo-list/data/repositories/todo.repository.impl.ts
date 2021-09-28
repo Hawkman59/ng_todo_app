@@ -10,14 +10,13 @@ export class TodoRepositoryImpl implements TodoRepository{
 
     async createTodo(todo: Todo): Promise<void>{
         await this.localDatasource.createTodo(todo)
-        return 
     }
 
-    /* updateTodoStatus(id: number, todo: Todo): Promise<Todo>{
-
+    async updateTodoStatus(id: number): Promise<void>{
+        await this.localDatasource.updateTodoStatus(id)
     }
 
-    deleteTodo(id: number): Promise<void>{
+    /*deleteTodo(id: number): Promise<void>{
 
     } */
 

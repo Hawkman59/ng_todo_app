@@ -3,21 +3,26 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { Todo } from 'src/app/features/todo-list/domain/entities/todo';
 import { AddTodoUsecase } from 'src/app/features/todo-list/domain/usecases/addTodo.usecase';
 import { GetTodoListUsecase } from 'src/app/features/todo-list/domain/usecases/getTodoList.usecase';
+import { UpdateTodoStatusUsecase } from 'src/app/features/todo-list/domain/usecases/updateTodoStatus.usecase';
 import { Todos } from '.';
 
 export interface TodoStateModel{
-    todos: Todo[]
+    todos: Todo[],
+    done: Todo[]
 }
 
 @State<TodoStateModel>({
   name: 'todos',
   defaults: {
-      todos: []
+      todos: [],
+      done: []
   }
 })
 @Injectable()
 export class TodosState {
-    constructor(private getTodoListUsecase: GetTodoListUsecase, private addTodoUsecase: AddTodoUsecase) {}
+    constructor(private getTodoListUsecase: GetTodoListUsecase, 
+        private addTodoUsecase: AddTodoUsecase, 
+        private updateTodoStatusUsecase: UpdateTodoStatusUsecase) {}
 
     @Action(Todos.FetchAll)
     async fetchAllTodos({ patchState }: StateContext<TodoStateModel>){
@@ -30,5 +35,10 @@ export class TodosState {
     @Action(Todos.Add)
     async AddTodos(ctx: StateContext<TodoStateModel>, action: Todos.Add){
         await this.addTodoUsecase.execute({text: action.text})
+    }
+
+    @Action(Todos.UpdateStatus)
+    async UpdateStatus(ctx: StateContext<TodoStateModel>, action: Todos.UpdateStatus){
+        await this.updateTodoStatusUsecase.execute({id: action.id})
     }
 }

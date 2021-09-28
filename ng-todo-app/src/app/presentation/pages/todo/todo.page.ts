@@ -36,6 +36,12 @@ export class TodoPage {
     })
   }
 
+  updateTodoStatus(id: number){
+    this.store.dispatch(new Todos.UpdateStatus(id)).pipe().subscribe(()=>{
+      this.getTodoList()
+    })
+  }
+
   toggleDone(){
     this.showDone = !this.showDone
   }

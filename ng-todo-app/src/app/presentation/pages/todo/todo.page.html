@@ -31,7 +31,7 @@
             <ion-item-sliding *ngFor="let todo of todos">
               <ion-item class="item-accordion"  >
                 <ion-label>{{todo.text}}</ion-label>
-                <ion-checkbox></ion-checkbox>
+                <ion-checkbox [(ngModel)]="todo.status" (click)="updateTodoStatus(todo.id)" ></ion-checkbox>
               </ion-item>
               <ion-item-options side="end">
                 <ion-item-option color="danger" >Löschen</ion-item-option>

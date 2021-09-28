@@ -6,6 +6,12 @@ export namespace Todos {
         constructor(public text: string ) {
         }
     }
+
+    export class UpdateStatus {
+        static readonly type = '[Todo] Update Status';
+        constructor(public id: number) {
+        }
+    }
     
     export class FetchAll {
         static readonly type = '[Todo] Fetch All';
