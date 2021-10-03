@@ -15,13 +15,13 @@
 
     <div id="content">
       <ion-item class="searchbar">
-        <ion-input type="text" placeholder="Enter Todo ..." [(ngModel)]="text"></ion-input>
-        <ion-button (click)="addTodo(this.text)"><ion-icon name="add-outline"></ion-icon></ion-button>
+        <ion-input id="todo-input" type="text" placeholder="Enter Todo ..." [(ngModel)]="text"></ion-input>
+        <ion-button id="add-todo-button" (click)="addTodo(this.text)"><ion-icon name="add-outline"></ion-icon></ion-button>
       </ion-item>
   
 
       <div class="list" *ngIf="this.todosUndone.length > 0">
-        <ion-list class="list" >
+        <ion-list id="undone-list" class="list" >
             <ion-item class="item-stable">
               <ion-text><h2>Todos</h2></ion-text>
             </ion-item>
@@ -30,8 +30,8 @@
       </div>
 
       <div class="list" *ngIf="this.todosDone.length > 0">
-        <ion-list class="list" >
-          <ion-item class="item-stable"
+        <ion-list id="done-list" class="list" >
+          <ion-item id="done-list-stable-elmt" class="item-stable"
                     (click)="toggleDone()">
                     
               <ion-grid>
@@ -47,7 +47,7 @@
               </ion-grid>
           </ion-item>
           <div *ngIf="showDone">
-            <todo-item *ngFor="let todo of todosDone" [todo]="todo" (update)="updateTodoStatus($event)" (delete)="deleteTodo($event)"></todo-item>
+            <todo-item class="todo-item" *ngFor="let todo of todosDone" [todo]="todo" (update)="updateTodoStatus($event)" (delete)="deleteTodo($event)"></todo-item>
           </div>
             
         </ion-list>
